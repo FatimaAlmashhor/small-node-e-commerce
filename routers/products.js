@@ -1,13 +1,34 @@
 const router = require("express").Router();
+const fetch = require("node-fetch");
 
 //get the products
 router.get('/', async (req, res) => {
     let products = []
-    await window.fetch('https://dummyjson.com/products')
+    await fetch('https://dummyjson.com/products')
         .then(res => res.json())
-        .then(console.log(products));
-    console.log('here the products ');
-    res.render('products', { products: products })
+        .then(result => products = result)
+        .catch(err => {
+            console.err({ err });
+        });
+
+    res.render('products', {
+        products: products.products,
+        title: 'Products'
+    })
+})
+router.get('/:product_id', async (req, res) => {
+    let product = null
+    await fetch(`https://dummyjson.com/products/${req.params.product_id}`)
+        .then(res => res.json())
+        .then(result => product = result)
+        .catch(err => {
+            console.err({ err });
+        });
+
+    res.render('productDetail', {
+        product: product,
+        title: 'Product'
+    })
 })
 
 module.exports = router;
