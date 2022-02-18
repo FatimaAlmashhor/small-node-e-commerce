@@ -4,17 +4,20 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start" :"node index.js" ,
-    "dev":"nodemon index.js" ,
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "pre:tailwind": "npx tailwindcss -i ./public/css/main.css -o ./dist/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.6",
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "node-fetch": "^3.2.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "tailwindcss": "^3.0.23"
   }
 }

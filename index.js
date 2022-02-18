@@ -3,11 +3,13 @@ const app = express();
 
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
+app.use('/dist', express.static('dist'));
 
 app.get('/', (req, res) => {
-    res.render('index')
+    res.render('index', { title: 'home' })
+
 })
-app.use('/product', require('./routers/products'))
+app.use('/products', require('./routers/products'))
 
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
