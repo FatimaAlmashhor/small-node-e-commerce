@@ -17,7 +17,7 @@
           <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Customers also purchased</h2>
       
           <div class="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
-            <% if (products.length == 0) { %>
+            <% if (products== undefined) { %>
                 <p>loading...</p>
              
             <% }else{ %>
@@ -29,15 +29,16 @@
                               src=
                               "
                               <%= products[index].images[0] %>
-                              " alt="Front of men&#039;s Basic Tee in black." class="w-full h-full object-center object-cover lg:w-full lg:h-full">
+                              " alt="Front of Basic Tee in black." class="w-full h-full object-center object-cover lg:w-full lg:h-full">
                             </div>
                             <div class="mt-4 flex justify-between">
                               <div>
                                 <h3 class="text-sm text-gray-700">
                                   <a href='
-                                  <%= '/products/' +products[index].id  %> 
+                                  <%= '/products/'+ products[index].id  %> 
                                   '>
                                     <span aria-hidden="true" class="absolute inset-0"></span>
+                                   
                                     <%= products[index].title %> 
                                   </a>
                                 </h3>

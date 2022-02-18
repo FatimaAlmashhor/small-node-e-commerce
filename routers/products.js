@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
         .then(res => res.json())
         .then(result => products = result)
         .catch(err => {
-            console.err({ err });
+            console.error({ err });
         });
 
     res.render('products', {
@@ -17,12 +17,12 @@ router.get('/', async (req, res) => {
     })
 })
 router.get('/:product_id', async (req, res) => {
-    let product = null
+    let product = {}
     await fetch(`https://dummyjson.com/products/${req.params.product_id}`)
         .then(res => res.json())
         .then(result => product = result)
         .catch(err => {
-            console.err({ err });
+            console.error({ err });
         });
 
     res.render('productDetail', {
