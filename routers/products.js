@@ -2,15 +2,18 @@ const router = require("express").Router();
 const fetch = require("node-fetch");
 const ejsLint = require('ejs-lint');
 const route = require('url')
+
 //get the products
 
+let categories, products = []
 
 router.get('/', async (req, res) => {
-    let products, categories = []
     try {
         await fetch('https://dummyjson.com/products')
             .then(res => res.json())
-            .then(result => products = result)
+            .then(result => {
+                products = result?.products
+            })
             .catch(err => {
                 console.error({ err });
             });
@@ -22,7 +25,7 @@ router.get('/', async (req, res) => {
             });
 
         res.render('products', {
-            products: products?.products,
+            products,
             categories,
             title: 'Products'
         })
@@ -36,14 +39,37 @@ router.get('/', async (req, res) => {
 })
 router.get('/category/:cat', async (req, res) => {
     try {
-        let result = route.parse(req.url).query?.q;
-        let peoducts = [];
-        await fetch(`https://dummyjson.com/products/category/${req.params.cat}`)
-            .then(res => res.json())
-            .then(result => peoducts = result);
+        let newPeoducts = await products.filter(element => {
+            if (element.category == req.params.cat)
+                return element
+        });
+        // await fetch(`https://dummyjson.com/products/category/${req.params.cat}`)
+        //     .then(res => res.json())
+        //     .then(result => peoducts = result);
         res.render('products', {
-            products: peoducts?.products,
-            categories: [],
+            products: newPeoducts,
+            categories,
+            title: 'Products'
+        })
+    } catch (e) {
+        console.log(e);
+    }
+
+})
+router.post('/search', async (req, res) => {
+    try {
+        let newPeoducts = await products.filter(element => {
+            if (element.title.includes(req.body.search))
+                return element
+        });
+        console.log('[newProducts]', newPeoducts);
+        // let result = route.parse(req.url).query?.q;
+        // await fetch(`https://dummyjson.com/products/search?q=${req.params.cat}`)
+        //     .then(res => res.json())
+        //     .then(result => peoducts = result);
+        res.render('products', {
+            products: newPeoducts,
+            categories,
             title: 'Products'
         })
     } catch (e) {
