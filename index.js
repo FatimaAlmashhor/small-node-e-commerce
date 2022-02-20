@@ -11,7 +11,10 @@ app.get('/', (req, res) => {
 
 })
 app.use('/products', require('./routers/products'))
+app.use('*', (req, res) => {
+    res.render('notFound', { title: 'Not Found' })
 
+})
 const PORT = process.env.PORT || 5000
 app.listen(PORT, () => {
     try {

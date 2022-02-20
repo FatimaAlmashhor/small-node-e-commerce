@@ -59,7 +59,7 @@ router.get('/category/:cat', async (req, res) => {
 router.post('/search', async (req, res) => {
     try {
         let newPeoducts = await products.filter(element => {
-            if (element.title.includes(req.body.search))
+            if (element.title.toLowerCase().includes(req.body.search.toLowerCase()))
                 return element
         });
         // let result = route.parse(req.url).query?.q;
@@ -77,18 +77,31 @@ router.post('/search', async (req, res) => {
 
 })
 router.get('/:product_id', async (req, res) => {
-    let product = {}
-    await fetch(`https://dummyjson.com/products/${req.params.product_id}`)
-        .then(res => res.json())
-        .then(result => product = result)
-        .catch(err => {
-            console.error({ err });
-        });
+    try {
+        let product = products[req.params.product_id]
 
-    res.render('productDetail', {
-        product: product,
-        title: 'Product'
-    })
+        // await fetch(`https://dummyjson.com/products/${req.params.product_id}`)
+        //     .then(res => res.json())
+        //     .then(result => product = result)
+        //     .catch(err => {
+        //         console.error({ err });
+        //     });
+        if (product != undefined) {
+            res.render('productDetail', {
+                product,
+                title: 'Not found'
+            })
+        }
+        else {
+            res.render('notFound', {
+                title: 'Product'
+            })
+        }
+
+    }
+    catch (error) {
+        console.log('error', error);
+    }
 })
 
 module.exports = router;
