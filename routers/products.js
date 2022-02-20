@@ -58,13 +58,16 @@ router.get('/category/:cat', async (req, res) => {
 })
 router.post('/search', async (req, res) => {
     try {
-        console.log(req.body.search);
+        let newPeoducts = await products.filter(element => {
+            if (element.title.includes(req.body.search))
+                return element
+        });
         // let result = route.parse(req.url).query?.q;
         // await fetch(`https://dummyjson.com/products/search?q=${req.params.cat}`)
         //     .then(res => res.json())
         //     .then(result => peoducts = result);
         res.render('products', {
-            products,
+            products: newPeoducts,
             categories,
             title: 'Products'
         })
