@@ -62,7 +62,6 @@ router.post('/search', async (req, res) => {
             if (element.title.includes(req.body.search))
                 return element
         });
-        console.log('[newProducts]', newPeoducts);
         // let result = route.parse(req.url).query?.q;
         // await fetch(`https://dummyjson.com/products/search?q=${req.params.cat}`)
         //     .then(res => res.json())
