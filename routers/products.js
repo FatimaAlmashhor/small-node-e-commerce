@@ -9,7 +9,7 @@ let categories, products = []
 
 router.get(['/', '/home'], async (req, res) => {
     try {
-        await fetch('https://dummyjson.com/products?limit=15')
+        await fetch('https://dummyjson.com/products')
             .then(res => res.json())
             .then(result => {
                 products = result?.products
@@ -78,25 +78,28 @@ router.post('/search', async (req, res) => {
 })
 router.get('/:product_id', async (req, res) => {
     try {
-        let product = products[req.params.product_id]
-
+        let product = products.filter(element => {
+            if (element.id == req.params.product_id)
+                return element
+        })
+        console.log(product);
         // await fetch(`https://dummyjson.com/products/${req.params.product_id}`)
         //     .then(res => res.json())
         //     .then(result => product = result)
         //     .catch(err => {
         //         console.error({ err });
         //     });
-        // if (product != undefined) {
-        res.render('productDetail', {
-            // product,
-            title: 'Product',
-        })
-        // }
-        // else {
-        //     res.render('notFound', {
-        //         title: 'Not found'
-        //     })
-        // }
+        if (product !== undefined && product.length !== 0) {
+            res.render('productDetail', {
+                product: product[0],
+                title: 'Product',
+            })
+        }
+        else {
+            res.render('notFound', {
+                title: 'Not found'
+            })
+        }
 
     }
     catch (error) {
