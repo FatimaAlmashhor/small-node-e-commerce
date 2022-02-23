@@ -27,7 +27,8 @@ router.get(['/', '/home'], async (req, res) => {
         res.render('products', {
             products,
             categories,
-            title: 'Products'
+            title: 'Products',
+            isSearch: true
         })
     }
     catch (e) {
@@ -49,7 +50,8 @@ router.get('/category/:cat', async (req, res) => {
         res.render('products', {
             products: newPeoducts,
             categories,
-            title: 'Products'
+            title: 'Products',
+            isSearch: true
         })
     } catch (e) {
         console.log(e);
@@ -69,7 +71,8 @@ router.post('/search', async (req, res) => {
         res.render('products', {
             products: newPeoducts,
             categories,
-            title: 'Products'
+            title: 'Products',
+            isSearch: true
         })
     } catch (e) {
         console.log(e);
@@ -93,11 +96,13 @@ router.get('/:product_id', async (req, res) => {
             res.render('productDetail', {
                 product: product[0],
                 title: 'Product',
+                isSearch: false
             })
         }
         else {
             res.render('notFound', {
-                title: 'Not found'
+                title: 'Not found',
+                isSearch: false
             })
         }
 
