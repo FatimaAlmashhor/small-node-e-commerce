@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "pre:tailwind": "npx tailwindcss -i ./public/css/main.css -o ./dist/output.css --watch",
+    "pre:watch": "npx tailwindcss -i ./public/css/main.css -o ./dist/output.css --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

@@ -7,9 +7,9 @@ const route = require('url')
 
 let categories, products = []
 
-router.get('/', async (req, res) => {
+router.get(['/', '/home'], async (req, res) => {
     try {
-        await fetch('https://dummyjson.com/products')
+        await fetch('https://dummyjson.com/products?limit=15')
             .then(res => res.json())
             .then(result => {
                 products = result?.products
@@ -86,17 +86,17 @@ router.get('/:product_id', async (req, res) => {
         //     .catch(err => {
         //         console.error({ err });
         //     });
-        if (product != undefined) {
-            res.render('productDetail', {
-                product,
-                title: 'Not found'
-            })
-        }
-        else {
-            res.render('notFound', {
-                title: 'Product'
-            })
-        }
+        // if (product != undefined) {
+        res.render('productDetail', {
+            // product,
+            title: 'Product',
+        })
+        // }
+        // else {
+        //     res.render('notFound', {
+        //         title: 'Not found'
+        //     })
+        // }
 
     }
     catch (error) {
