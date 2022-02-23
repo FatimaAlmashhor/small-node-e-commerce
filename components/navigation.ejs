@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../dist/output.css">
 <div class="bg-indigo-700 text-indigo-200 md:text-center py-2 px-4">
     Inspired from Dribbble Shot by <a href="https://dribbble.com/shots/14127375-Product-Page"
         class="font-bold underline hover:text-indigo-100">Vishnu Prasad</a>.
@@ -20,7 +21,7 @@
             <a href="/" class="font-bold text-gray-700 text-2xl">Shop.</a>
 
             <div class="hidden md:flex space-x-3 flex-1 lg:ml-8">
-                <a href="/home"
+                <a href="/"
                     class="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">Home</a>
                 <a href="/products" class="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">Products</a>
 
@@ -28,7 +29,7 @@
 
             <div class="flex items-center space-x-4">
                 <% if (isSearch) { %>
-                    <form method="post" action="/products/search" class="relative hidden md:block">
+                    <form method="post" action="/products/search" class="relative hidden md:block flex ">
                         <input type="search"
                         name="search"
                             class="pl-10 pr-2 h-10 py-1 rounded-lg border border-gray-200 focus:border-gray-300 focus:outline-none focus:shadow-inner leading-none"
