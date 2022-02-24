@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="../dist/output.css">
+
 <div class="bg-indigo-700 text-indigo-200 md:text-center py-2 px-4">
     Inspired from Dribbble Shot by <a href="https://dribbble.com/shots/14127375-Product-Page"
         class="font-bold underline hover:text-indigo-100">Vishnu Prasad</a>.
@@ -65,11 +66,11 @@
 
         <!-- Search Mobile -->
         <% if (isSearch) { %>
-            <form method="post" action="/products/search" class="relative hidden md:block">
+            <form method="post" action="/products/search" class="relative block  md:hidden">
                 <input type="search"
                 name="search"
                     class="pl-10 pr-2 h-10 py-1 rounded-lg border border-gray-200 focus:border-gray-300 focus:outline-none focus:shadow-inner leading-none"
-                    placeholder="Search">
+                    placeholder="Search here">
                 <svg type="submit" 
                 name="submit"
                 class="h-6 w-6 text-gray-300 ml-2 mt-2 stroke-current absolute top-0 left-0"

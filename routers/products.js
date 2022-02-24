@@ -58,6 +58,18 @@ router.get('/category/:cat', async (req, res) => {
     }
 
 })
+router.get('/all', (req, res) => {
+    try {
+        res.render('products', {
+            products,
+            categories,
+            title: 'Products',
+            isSearch: true
+        })
+    } catch (e) {
+        console.log(e);
+    }
+})
 router.post('/search', async (req, res) => {
     try {
         let newPeoducts = await products.filter(element => {

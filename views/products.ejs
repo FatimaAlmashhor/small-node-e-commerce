@@ -35,7 +35,14 @@
               <% if (categories==undefined) { %>
                 <p>loading ...</p>
                 <% } else{%>
-
+                  <p>
+                    <li class=""><a
+                        class="rounded-t my-1 bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap"
+                        href="/products/all" 
+                        >
+                        All
+                      </a></li>
+                  </p>
                   <% for( let index=0; index < categories.length; index++ ) { %>
                     <p>
                       <li class=""><a
